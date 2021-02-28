@@ -1,3 +1,2 @@
-# myrepoR
-testing second setup
-making a change form rstudio
+# Week 5 Statistics
+Try adding your own README
