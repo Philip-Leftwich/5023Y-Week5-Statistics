@@ -9,6 +9,9 @@ output:
     toc_float: yes
     highlight: pygments
     css: css/lab.css
+  word_document:
+    toc: yes
+    toc_depth: '2'
 link-citations: yes
 ---
 
@@ -25,7 +28,7 @@ library(car)
 library(qqplotr)
 library(praise)
 library(patchwork)
-library(sjPlot)
+library(stargazer)
 
 ```
 
@@ -37,7 +40,7 @@ This data set includes data for 39 species of mammals distributed over 13 orders
 Originally published by  T. Allison and D. Cicchetti, "Sleep in mammals: ecological and constitutional correlates," *Arch. Hydrobiol*, vol. 75, p. 442, 1975.
 
 ```{r, message=FALSE}
-mammals <- read_csv("mammals.csv")
+mammals <- read_csv("data/mammals.csv")
 
 ```
 
@@ -476,7 +479,7 @@ Now that we’ve explored the assumptions and have decided that our linear regre
 
 ```{r}
 plot9+ggtitle("Linear trend")
-  
+praise::praise("${exclamation}! This is just ${adjective}!")
 ```
 
 </details>
@@ -511,13 +514,23 @@ broom::glance(log10_model)
 
 A simple linear regression was used to explore the relationship between gestation in days and the average adult body weight across mutliple mammalian species. A log~10~ transformation was applied to the mammalian bodyweight variable in order to better approximate a linear fit for the regression. A significant regression equation was found $\beta$ = 0.007(95%CI: 0.006-0.009), *F*~1,56~ = 80.24, *P* < 0.001, with an *R^2* of 059.   
 
-If we want to report the full summary table of our model (which is often useful). Then we can use the excellent `sjPlot` package and `tab_model()`to produce neat and customisable *html* tables. (Very useful when writing up your report in RMarkdown).
+If we want to report the full summary table of our model (which is often useful). Then we can use the excellent `stargazer` package to produce neat and very customisable tables. (Very useful when writing up your report in RMarkdown - will need to be modified between HTML/ PDF outputs).
 
-And note how it emphasises 95% Confidence Intervals of the Mean Difference.  
+And note how I have emphasised 95% Confidence Intervals of the Mean Difference.
 
-```{r, class.source = "fold-show"}
-sjPlot::tab_model(log10_model)
+(https://www.jakeruss.com/cheatsheets/stargazer/)
+
+
+```{r, results="asis"}
+stargazer::stargazer(log10_model, type="html", ci=TRUE)
+
+##optional
+###notes.append = FALSE, notes =c("<sup>&sstarf;</sup>p<0.1; <sup>&sstarf;&sstarf;</sup>p<0.05; <sup>&sstarf;&sstarf;&sstarf;</sup>p<0.01))
+
+### this extra code from notes.append onwards fixes a minor issue of not including the number of stars at the end of the table in HTML output only
+
 ```
+
 
 </details>
 
@@ -593,5 +606,9 @@ If you attempt another model fit, you can upload your model checks and a short d
 In future sessions we will look at other types of distributions including *count* and *binomial* data. 
 
 Practice your GitHub control:  Stage, Commit and Push these changes to your Repo. 
+
+**Finally I think you deserve some more auto-generated! {praise}** 
+
+`r praise::praise()`
 
 
