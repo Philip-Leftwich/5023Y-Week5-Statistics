@@ -37,7 +37,7 @@ This data set includes data for 39 species of mammals distributed over 13 orders
 Originally published by  T. Allison and D. Cicchetti, "Sleep in mammals: ecological and constitutional correlates," *Arch. Hydrobiol*, vol. 75, p. 442, 1975.
 
 ```{r, message=FALSE}
-mammals <- read_csv("mammals.csv")
+mammals <- read_csv("data/mammals.csv")
 
 ```
 
@@ -476,7 +476,7 @@ Now that we’ve explored the assumptions and have decided that our linear regre
 
 ```{r}
 plot9+ggtitle("Linear trend")
-  
+praise::praise("${exclamation}! This is just ${adjective}!")
 ```
 
 </details>
@@ -593,5 +593,9 @@ If you attempt another model fit, you can upload your model checks and a short d
 In future sessions we will look at other types of distributions including *count* and *binomial* data. 
 
 Practice your GitHub control:  Stage, Commit and Push these changes to your Repo. 
+
+**Finally I think you deserve some more auto-generated! {praise}** 
+
+`r praise::praise()`
 
 
