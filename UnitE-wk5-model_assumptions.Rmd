@@ -9,9 +9,6 @@ output:
     toc_float: yes
     highlight: pygments
     css: css/lab.css
-  word_document:
-    toc: yes
-    toc_depth: '2'
 link-citations: yes
 ---
 
